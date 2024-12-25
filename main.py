@@ -39,7 +39,7 @@ def add_to_reference(text: str):
             f.write(text + "\n")
         return "Текст додано до референсної бази."
     else:
-        return "Текст уже існує в референсній базі."
+        return "Текст вже існує в референсній базі."
 
 # Перевірка тексту через OpenAI API
 async def check_plagiarism(user_text: str) -> str:
@@ -50,7 +50,7 @@ async def check_plagiarism(user_text: str) -> str:
         # Готуємо запит до OpenAI API
         response = openai.ChatCompletion.create(
             model="gpt-4",
-            messages=[
+            messages=[ 
                 {"role": "system", "content": (
                     "Ти експерт з виявлення плагіату. Перевір текст користувача на схожість із референсними текстами. "
                     "Якщо текст схожий, поясни, які частини збігаються. Якщо текст унікальний, напиши це."
@@ -96,9 +96,9 @@ async def telegram_main():
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, check_text))
 
-    # Запускаємо polling
-    await application.run_polling()
+    # Запускаємо бота без локального сервера (не використовується run_polling)
+    # Якщо потрібно використовувати webhook, налаштовуємо його в коді тут.
 
 if __name__ == "__main__":
-    # Використовуємо поточний цикл подій для запуску бота
+    # Використовуємо поточний цикл подій для запуску бота без локального серверу
     asyncio.run(telegram_main())
