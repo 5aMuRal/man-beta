@@ -25,7 +25,7 @@ if not os.path.exists(REFERENCE_FILE):
 
 # Завантаження референсних текстів
 def load_reference_texts():
-    with open(REFERENCE_FILE, "r", encoding="utf-8") as f:
+    with open(reference_texts.txt, "r", encoding="utf-8") as f:
         return f.read().splitlines()
 
 # Додавання тексту до референсної бази
