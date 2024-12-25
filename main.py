@@ -8,8 +8,14 @@ import nest_asyncio
 nest_asyncio.apply()
 
 # Ініціалізація OpenAI API
-openai.api_key = OPENAI_API_KEY
+openai.api_key = os.getenv("OPENAI_API_KEY")
+if not openai.api_key:
+    raise ValueError("OPENAI_API_KEY не встановлено!")
 
+# Ініціалізація Telegram Token
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+if not TELEGRAM_TOKEN:
+    raise ValueError("TELEGRAM_TOKEN не встановлено!")
 # Файл для зберігання референсних текстів
 REFERENCE_FILE = "reference_texts.txt"
 
@@ -82,7 +88,7 @@ async def check_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Основний цикл для Telegram бота
 async def telegram_main():
     # Ініціалізація Telegram бота
-    application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    application = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     # Додаємо хендлери для команд та повідомлень
     application.add_handler(CommandHandler("start", start))
