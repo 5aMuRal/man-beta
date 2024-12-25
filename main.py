@@ -7,10 +7,6 @@ import nest_asyncio
 # Дозволяємо повторне використання активного циклу подій
 nest_asyncio.apply()
 
-# Ініціалізація токенів
-OPENAI_API_KEY = ""  # Вставте ваш OpenAI API ключ
-TELEGRAM_BOT_TOKEN = ""  # Вставте ваш Telegram Bot токен
-
 # Ініціалізація OpenAI API
 openai.api_key = OPENAI_API_KEY
 
