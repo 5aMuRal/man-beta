@@ -18,21 +18,24 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 if not TELEGRAM_TOKEN:
     raise ValueError("TELEGRAM_TOKEN не встановлено!")
 
+# Файл для зберігання референсних текстів
+REFERENCE_FILE = "reference_texts.txt"
+
 # Створюємо файл, якщо його немає
-if not os.path.exists(reference_texts.txt):
-    with open(reference_texts.txt, "w", encoding="utf-8") as f:
+if not os.path.exists(REFERENCE_FILE):
+    with open(REFERENCE_FILE, "w", encoding="utf-8") as f:
         f.write("")
 
 # Завантаження референсних текстів
 def load_reference_texts():
-    with open(reference_texts.txt, "r", encoding="utf-8") as f:
+    with open(REFERENCE_FILE, "r", encoding="utf-8") as f:
         return f.read().splitlines()
 
 # Додавання тексту до референсної бази
 def add_to_reference(text: str):
     reference_texts = load_reference_texts()
     if text not in reference_texts:  # Уникаємо дублювання
-        with open(reference_texts.txt, "a", encoding="utf-8") as f:
+        with open(REFERENCE_FILE, "a", encoding="utf-8") as f:
             f.write(text + "\n")
         return "Текст додано до референсної бази."
     else:
