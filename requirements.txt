@@ -1,4 +1,4 @@
 nest_asyncio
 asyncio
-python-telegram
+python-telegram-bot
 openai
