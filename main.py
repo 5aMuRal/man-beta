@@ -13,7 +13,7 @@ if not openai.api_key:
     raise ValueError("OPENAI_API_KEY не встановлено!")
 
 # Ініціалізація Telegram Token
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 if not TELEGRAM_TOKEN:
     raise ValueError("TELEGRAM_TOKEN не встановлено!")
 # Файл для зберігання референсних текстів
